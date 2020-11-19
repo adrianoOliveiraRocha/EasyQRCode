@@ -3,7 +3,7 @@ import { View, Button, Text, Animated } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
-import Contact from './components/Contact';
+import BarCodeReader from './components/BarCodeReader';
 
 const forFad = ({ current, next }) => {
   const opacity = Animated(
@@ -37,8 +37,8 @@ function MyStack() {
       />
 
       <Stack.Screen
-        name="Contact"
-        component={Contact}
+        name="Read Code"
+        component={BarCodeReader}
         options={{ headerStyleInterpolator: forFad }}
       />
 

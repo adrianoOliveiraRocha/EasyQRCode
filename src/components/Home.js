@@ -15,9 +15,9 @@ export default function Home({ navigation }) {
 
       <View style={styles.bodyContainer}>
         <Button
-          title="See Data"
+          title="Read Code"
           color="#048599"
-          onPress={() => navigation.navigate("Contact")}
+          onPress={() => navigation.navigate("Read Code")}
         />
       </View>
 

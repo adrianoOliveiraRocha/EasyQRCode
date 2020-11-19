@@ -1,0 +1,27 @@
+O QR Code Reader faz a leitura dos QR Codes rapidamente. Os códigos podem ser
+lidos apenas apontando a câmera traseira do celular, sem a necessidade de tirar
+uma foto ou apertar algum botão. Também é possível escanear os QR Codes a partir
+de imagens salvas na galeria do aparelho, função ideal para ler códigos
+printados da Internet.
+
+Ao realizar um escaneamento, o app exibe na tela o endereço URL contido no código,
+para que o usuário confirme a procedência do link e possa acessá-lo com segurança.
+Caso o conteúdo seja um texto, ele será exibido imediatamente na tela, podendo ser
+copiado ou enviado por e-mail.
+
+O app possui um botão que aciona imediatamente a lanterna do celular, para que seja
+possível escanear códigos mesmo em ambientes escuros. Para identificar que a leitura
+foi realizada, o software emite sinais sensoriais, como sons e vibração, que podem ser desativados nas configurações. O aplicativo também registra um histórico de códigos lidos, que podem ser acessados novamente quando quiser.
+
+O menu do aplicativo é exibido em inglês, mas as principais funções do app não demandam
+o acesso a ele, o que não dificultará a utilização do scanner.
+Prós
+
+    Faz a leitura rapidamente
+    Exibe a URL contida no código escaneado
+    Permite ler códigos de imagens da galeria
+    Possui botão para acionar o flash
+
+Contras
+
+    Apenas em inglês
