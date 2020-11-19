@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-// import AsyncStorage from '@react-native-community/async-storage';
+import ModalComponent from './ModalComponent';
 
-export default function BarCodeReader() {
+export default function BarCodeReader({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  const [scanned, setScanned] = useState(true);
   const [codeType, setCodeType] = useState(null);
   const [codeData, setCodeDate] = useState(null);
+  const [buttonAccess, setButonAccess] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -17,16 +18,21 @@ export default function BarCodeReader() {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    // data is the information encoded in barcode. In this case, the bar
     setScanned(true);
-    setCodeType(type);
-    setCodeDate(data);
-    if(type == 256) {
-      alert(`URL ${data}`);
+    if(data.startsWith("https://")) {
+      alert("URL segura: " + data);
+      setCodeType(type);
+      setCodeDate(data);
+      setButonAccess(true);
+    } else if (data.startsWith("http://")){
+      alert("URL não segura: " + data);
+      setCodeType(type);
+      setCodeDate(data);
+      setButonAccess(true);
     } else {
-      alert(`Esse código não é uma URL: ${data}`)
+      alert("Não é uma URL: " + data);
+      setButonAccess(false);
     }
-
   };
 
   if (hasPermission === null) {
@@ -35,6 +41,10 @@ export default function BarCodeReader() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  const flash = () => {
+    alert(codeData);
+  };
 
   return (
     <View style={styles.container}>
@@ -46,8 +56,13 @@ export default function BarCodeReader() {
         />
       </View>
       <View style={styles.buttonSpace}>
-        {scanned && <Button title={'Lêr Novamente'} onPress={() => setScanned(false)} />}
-        {/*{scanned && <Button title="Save" onPress={saveBarcode} />}*/}
+
+      <View style={styles.buttonSpace}>
+        <Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>
+        {buttonAccess && <Text style={styles.button} onPress={() => alert('Acessar')}>Acessar</Text>}
+        <Text style={styles.button} onPress={flash}>Ligar Flash</Text>
+      </View>
+
       </View>
 
     </View>
@@ -62,16 +77,23 @@ const styles = StyleSheet.create({
     // alignItems: 'center'
   },
   cameraSpace: {
-    flex: 0.8,
+    flex: 0.6,
   },
   buttonSpace: {
-    flex: 0.2,
+    flex: 0.4,
     alignItems: 'center',
     justifyContent: 'space-around',
+    height: 100,
     // backgroundColor: 'blue',
     // width: 200,
   },
   button: {
-    width: 200
+    width: 200,
+    backgroundColor: 'black',
+    color: 'white',
+    padding: 3,
+    margin: 2,
+    textAlign: 'center',
+    fontSize: 20
   }
 })
