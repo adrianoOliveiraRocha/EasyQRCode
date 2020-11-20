@@ -8,9 +8,6 @@ export default function BarCodeReader({ navigation }) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(true);
-  const [codeType, setCodeType] = useState(null);
-  const [codeData, setCodeDate] = useState(null);
-  const [buttonAccess, setButonAccess] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -19,50 +16,43 @@ export default function BarCodeReader({ navigation }) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  async function handleBarCodeScanned({ type, data }) {
+
     setScanned(true);
+
     if(data.startsWith("https://")) {
-      // alert("URL segura: " + data);
-      renderAlert("URL segura: ", data, true)
-      setCodeType(type);
-      setCodeDate(data);
-      setButonAccess(true);
+      isURLAlert("URL segura: ", data);
+      // setButonAccess(true);
     } else if (data.startsWith("http://")){
-      renderAlert("URL não segura: " + data, true);
-      setCodeType(type);
-      setCodeDate(data);
-      setButonAccess(true);
+      isURLAlert("URL não segura: " + data);
     } else {
-      renderAlert("Não é uma URL: " + data, false);
-      setButonAccess(false);
+      isNotURLAlert(data);
     }
+
   };
 
-  function renderAlert(title, message, isURL) {
-    function isAccessible() {
-      return isURL
-        ? { text: 'Acessar', onPress: access }
-        : undefined
-    }
+  function isURLAlert(title, data) {
     Alert.alert(
       title,
-      message,
+      data,
       [
-        { text: 'OK', onPress: () => console.log('Test') },
-        isAccessible()
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Acessar", onPress: access }
       ],
-      { cancelable: true }
+      { cancelable: false }
     );
+
+    function access() {
+      Linking.openURL(data);
+    }
   }
 
-  function access() {
-    Linking.openURL(codeData)
-      .then(() =>{
-        console.log('success');
-      })
-      .catch(e => {
-        console.error(e);
-      })
+  function isNotURLAlert(data) {
+    alert('Não é uma URL: ' + data);
   }
 
   if (hasPermission === null) {
@@ -86,9 +76,6 @@ export default function BarCodeReader({ navigation }) {
 
       <View style={styles.buttonSpace}>
         <Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>
-        {/*
-        {buttonAccess && <Text style={styles.button} onPress={access}>Acessar</Text>}
-        */}
       </View>
 
       </View>
