@@ -23,35 +23,46 @@ export default function BarCodeReader({ navigation }) {
     setScanned(true);
     if(data.startsWith("https://")) {
       // alert("URL segura: " + data);
-      renderAlert("URL segura: ", data)
+      renderAlert("URL segura: ", data, true)
       setCodeType(type);
       setCodeDate(data);
       setButonAccess(true);
     } else if (data.startsWith("http://")){
-      renderAlert("URL não segura: " + data);
+      renderAlert("URL não segura: " + data, true);
       setCodeType(type);
       setCodeDate(data);
       setButonAccess(true);
     } else {
-      renderAlert("Não é uma URL: " + data);
+      renderAlert("Não é uma URL: " + data, false);
       setButonAccess(false);
     }
   };
 
-  function renderAlert(title, message) {
+  function renderAlert(title, message, isURL) {
+    function isAccessible() {
+      return isURL
+        ? { text: 'Acessar', onPress: access }
+        : undefined
+    }
     Alert.alert(
       title,
       message,
       [
         { text: 'OK', onPress: () => console.log('Test') },
-        { text: 'Acessar', onPress: () => console.log('Test') },
+        isAccessible()
       ],
       { cancelable: true }
     );
   }
 
   function access() {
-    Linking.openURL(codeData);
+    Linking.openURL(codeData)
+      .then(() =>{
+        console.log('success');
+      })
+      .catch(e => {
+        console.error(e);
+      })
   }
 
   if (hasPermission === null) {
@@ -68,15 +79,16 @@ export default function BarCodeReader({ navigation }) {
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
-
         />
       </View>
+
       <View style={styles.buttonSpace}>
 
       <View style={styles.buttonSpace}>
         <Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>
+        {/*
         {buttonAccess && <Text style={styles.button} onPress={access}>Acessar</Text>}
-
+        */}
       </View>
 
       </View>
@@ -93,10 +105,10 @@ const styles = StyleSheet.create({
     // alignItems: 'center'
   },
   cameraSpace: {
-    flex: 0.6,
+    flex: 0.9,
   },
   buttonSpace: {
-    flex: 0.4,
+    flex: 0.1,
     alignItems: 'center',
     justifyContent: 'space-around',
     height: 100,
