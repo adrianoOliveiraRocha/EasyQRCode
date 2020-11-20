@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Alert, Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import ModalComponent from './ModalComponent';
 import * as Linking from 'expo-linking';
@@ -22,7 +22,8 @@ export default function BarCodeReader({ navigation }) {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     if(data.startsWith("https://")) {
-      alert("URL segura: " + data);
+      // alert("URL segura: " + data);
+      renderAlert("URL segura: ", data)
       setCodeType(type);
       setCodeDate(data);
       setButonAccess(true);
@@ -37,12 +38,24 @@ export default function BarCodeReader({ navigation }) {
     }
   };
 
+  function renderAlert(title, message) {
+    Alert.alert(
+      title,
+      message,
+      [
+        { text: 'OK', onPress: () => console.log('Test') },
+        { text: 'Acessar', onPress: () => console.log('Test') },
+      ],
+      { cancelable: true }
+    );
+  }
+
   function access() {
     Linking.openURL(codeData);
   }
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
+    return <Text style={{textAlign: 'center', justifyContent: 'center'}}>Requesting for camera permission</Text>;
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
@@ -92,7 +105,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
-    backgroundColor: 'black',
+    backgroundColor: '#048599',
     color: 'white',
     padding: 3,
     margin: 2,
