@@ -28,12 +28,12 @@ export default function BarCodeReader({ navigation }) {
       setCodeDate(data);
       setButonAccess(true);
     } else if (data.startsWith("http://")){
-      alert("URL não segura: " + data);
+      renderAlert("URL não segura: " + data);
       setCodeType(type);
       setCodeDate(data);
       setButonAccess(true);
     } else {
-      alert("Não é uma URL: " + data);
+      renderAlert("Não é uma URL: " + data);
       setButonAccess(false);
     }
   };
