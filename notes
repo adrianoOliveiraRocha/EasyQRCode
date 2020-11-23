@@ -1,0 +1,26 @@
+main color: #4b85c5
+
+This App allow:
+    1 - Fast reading of the QR Code;
+    2 - Indicates whether the QR Code contains a URL;
+    3 - If the QR Code return a URL:
+        3.1 - Displays the URL contained in the scanned code;
+        3.2 - Indicates whether the URL is secure or not;
+        3.3 - Provides a button to access the page
+
+
+Privacy:
+
+Permissions
+
+Permission requests should make sense to users. You may only request permissions that are necessary to implement current features or services in your app that are promoted in your Play Store listing. You may not use permissions that give access to user or device data for undisclosed, unimplemented, or disallowed features or purposes. Personal or sensitive data accessed through permissions may never be sold.
+
+Request permissions to access data in context (via incremental auth), so that users understand why your app is requesting the permission. Use the data only for purposes that the user has consented to. If you later wish to use the data for other purposes, you must ask users and make sure they affirmatively agree to the additional uses.
+Restricted Permissions
+
+In addition to the above, restricted permissions are permissions that are designated as Dangerous, Special, or Signature, and are subject to the following additional requirements and restrictions:
+
+    Sensitive user or device data accessed through Restricted Permissions may only be transferred to third parties if necessary to provide or improve current features or services in the app from which the data was collected. You may also transfer data as necessary to comply with applicable law or as part of a merger, acquisition, or sale of assets with legally adequate notice to users. All other transfers or sales of the user data are prohibited.
+    Respect users’ decisions if they decline a request for a Restricted Permission, and users may not be manipulated or forced into consenting to any non-critical permission. You must make a reasonable effort to accommodate users who do not grant access to sensitive permissions (e.g., allowing a user to manually enter a phone number if they’ve restricted access to Call Logs).
+
+Certain Restricted Permissions may be subject to additional requirements as detailed below. The objective of these restrictions is to safeguard user privacy. We may make limited exceptions to the requirements below in very rare cases where apps provide a highly compelling or critical feature and where there is no alternative method available to provide the feature. We evaluate proposed exceptions against the potential privacy or security impacts on users.

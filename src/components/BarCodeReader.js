@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import ModalComponent from './ModalComponent';
 import * as Linking from 'expo-linking';
 
 export default function BarCodeReader({ navigation }) {
@@ -21,10 +20,10 @@ export default function BarCodeReader({ navigation }) {
     setScanned(true);
 
     if(data.startsWith("https://")) {
-      isURLAlert("URL segura: ", data);
+      isURLAlert("Secure URL: ", data);
       // setButonAccess(true);
     } else if (data.startsWith("http://")){
-      isURLAlert("URL não segura: " + data);
+      isURLAlert("Unsecure URL: " + data);
     } else {
       isNotURLAlert(data);
     }
@@ -37,11 +36,11 @@ export default function BarCodeReader({ navigation }) {
       data,
       [
         {
-          text: "Cancelar",
+          text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Acessar", onPress: access }
+        { text: "Open Website", onPress: access }
       ],
       { cancelable: false }
     );
@@ -52,14 +51,14 @@ export default function BarCodeReader({ navigation }) {
   }
 
   function isNotURLAlert(data) {
-    alert('Não é uma URL: ' + data);
+    alert('It is NOT a URL: ' + data);
   }
 
   if (hasPermission === null) {
     return <Text style={{textAlign: 'center', justifyContent: 'center'}}>Requesting for camera permission</Text>;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text style={{textAlign: 'center', justifyContent: 'center'}}>No access to camera</Text>;
   }
 
   return (
@@ -75,7 +74,8 @@ export default function BarCodeReader({ navigation }) {
       <View style={styles.buttonSpace}>
 
       <View style={styles.buttonSpace}>
-        <Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>
+        {/*<Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>*/}
+        <Button title="Get Data" color="#4b85c5" onPress={() => setScanned(false)} />
       </View>
 
       </View>
@@ -98,13 +98,11 @@ const styles = StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    height: 100,
-    // backgroundColor: 'blue',
-    // width: 200,
+
   },
   button: {
     width: 200,
-    backgroundColor: '#048599',
+    backgroundColor: '#4b85c5',
     color: 'white',
     padding: 3,
     margin: 2,

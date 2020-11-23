@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "BarCode Reader",
-    "slug": "GetBarCodeData",
+    "name": "Easy QRCode",
+    "slug": "easy-qrcode",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#e3eaa7"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,11 +22,14 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#4b85c5"
+      },
+      "config": {
+        "googleMobileAdsAppId": "pub-7854818002814670" // sample id, replace with your own
       },
       "permissions" : ["CAMERA"],
-      "package": "reader.code.w3software",
-      "versionCode": 1
+      "package": "qrcode.easy.w3software",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
