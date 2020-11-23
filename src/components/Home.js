@@ -12,9 +12,8 @@ export default function Home({ navigation }) {
     Linking.openURL("https://sites.google.com/view/easy-qrcode/home");
   }
 
-  function bannerError(error) {
-    console.error('Error: ' + error);
-    alert(error);
+  function bannerError() {
+    console.error('ErrorBanner');
   }
 
   return (
@@ -37,13 +36,13 @@ export default function Home({ navigation }) {
           onPress={openPrivacyPolicy}
         />
       </View>
-
-      <PublisherBanner
-        bannerSize="fullBanner"
-        adUnitID="pub-7854818002814670"
-        onDidFailToReceiveAdWithError={bannerError}
-      />
-
+      <View style={styles.bannerContainer}>
+        <PublisherBanner
+          bannerSize="fullBanner"
+          adUnitID="pub-7854818002814670"
+          onDidFailToReceiveAdWithError={bannerError}
+        />
+      </View>
       <StatusBar style="auto" />
 
     </View>
@@ -62,11 +61,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   bodyContainer: {
-    flex: 0.6,
+    flex: 0.5,
     backgroundColor: '#4b85c5',
     alignItems: 'center',
     justifyContent: 'space-around',
     // padding: 15
+  },
+  bannerContainer: {
+    flex: 0.1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    backgroundColor: '#4b85c5'
   },
   tinyLogo: {
     width: 200,
