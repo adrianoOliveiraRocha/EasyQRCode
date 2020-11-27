@@ -73,10 +73,10 @@ export default function BarCodeReader({ navigation }) {
 
       <View style={styles.buttonSpace}>
 
-      <View style={styles.buttonSpace}>
-        {/*<Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>*/}
-        <Button title="Get Data" color="#4b85c5" onPress={() => setScanned(false)} />
-      </View>
+        <View style={styles.buttonSpace}>
+          {/*<Text style={styles.button} onPress={() => setScanned(false)}>Lêr QRCode</Text>*/}
+          <Button title="Get Data" color="#4b85c5" onPress={() => setScanned(false)} />
+        </View>
 
       </View>
 

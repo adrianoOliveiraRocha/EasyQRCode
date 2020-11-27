@@ -24,12 +24,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#4b85c5"
       },
-      "config": {
-        "googleMobileAdsAppId": "pub-7854818002814670" 
-      },
       "permissions" : ["CAMERA"],
       "package": "qrcode.easy.w3software",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -2,10 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import * as Linking from 'expo-linking';
-import { PublisherBanner} from 'expo-ads-admob';
-
-// test id ca-app-pub-3940256099942544/6300978111
-// real id pub-7854818002814670
 export default function Home({ navigation }) {
 
   function openPrivacyPolicy() {
@@ -36,13 +32,7 @@ export default function Home({ navigation }) {
           onPress={openPrivacyPolicy}
         />
       </View>
-      <View style={styles.bannerContainer}>
-        <PublisherBanner
-          bannerSize="fullBanner"
-          adUnitID="pub-7854818002814670"
-          onDidFailToReceiveAdWithError={bannerError}
-        />
-      </View>
+
       <StatusBar style="auto" />
 
     </View>
@@ -61,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   bodyContainer: {
-    flex: 0.5,
+    flex: 0.6,
     backgroundColor: '#4b85c5',
     alignItems: 'center',
     justifyContent: 'space-around',
