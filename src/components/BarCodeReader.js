@@ -23,7 +23,7 @@ export default function BarCodeReader({ navigation }) {
       isURLAlert("Secure URL: ", data);
       // setButonAccess(true);
     } else if (data.startsWith("http://")){
-      isURLAlert("Unsecure URL: " + data);
+      isURLAlert("Unsecure URL: ", data);
     } else {
       isNotURLAlert(data);
     }

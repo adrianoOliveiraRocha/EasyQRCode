@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Button, Text, Animated } from 'react-native';
+import { Animated } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
